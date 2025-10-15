@@ -101,8 +101,22 @@ function llenarSelect() {
 function filtrarAuto(e) {
     const resultado = autos.filter(filtrarMarca).filter(filtrarYear).filter(filtrarMinimo).filter(filtrarMaximo).filter(
         filtrarPuertas).filter(filtrarTransmision).filter(filtrarColor)
-    //console.log(resultado)
-    mostrarAutos(resultado);
+
+    if (resultado.length) {
+        mostrarAutos(resultado);
+    } else {
+        noResultado();
+    }
+}
+
+function noResultado() {
+
+    limpiarHTML();
+
+    const noResultado = document.createElement('div');
+    noResultado.classList.add('alerta', 'error')
+    noResultado.textContent = 'No hay resultados, intenta con otras opciones'
+    resultado.appendChild(noResultado)
 }
 
 // Filtro de autos por marca
