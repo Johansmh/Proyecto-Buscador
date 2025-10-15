@@ -99,7 +99,7 @@ function llenarSelect() {
 
 // Funcion que filtra en la base de busqueda
 function filtrarAuto(e) {
-    const resultado = autos.filter(filtrarMarca).filter(filtrarYear)
+    const resultado = autos.filter(filtrarMarca).filter(filtrarYear).filter(filtrarMinimo).filter(filtrarMaximo)
     //console.log(resultado)
     mostrarAutos(resultado);
 }
@@ -118,6 +118,24 @@ function filtrarYear(auto) {
     const { year } = datosBusqueda;
     if (year) {
         return auto.year === year;
+    }
+    return auto;
+}
+
+// Filtro de autos por precio minimo
+function filtrarMinimo(auto) {
+    const { minimo } = datosBusqueda;
+    if (minimo) {
+        return auto.precio >= minimo;
+    }
+    return auto;
+}
+
+// Filtro de autos por precio maximo
+function filtrarMaximo(auto) {
+    const { maximo } = datosBusqueda;
+    if (maximo) {
+        return auto.precio <= maximo;
     }
     return auto;
 }
