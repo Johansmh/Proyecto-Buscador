@@ -37,31 +37,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
 marca.addEventListener('change', e => {
     datosBusqueda.marca = e.target.value;
-    console.log(datosBusqueda)
+    filtrarAuto();
 })
 year.addEventListener('change', e => {
     datosBusqueda.year = e.target.value;
-    console.log(datosBusqueda)
+    filtrarAuto();
 })
 minimo.addEventListener('change', e => {
     datosBusqueda.minimo = e.target.value;
-    console.log(datosBusqueda)
+    filtrarAuto();
 })
 maximo.addEventListener('change', e => {
     datosBusqueda.maximo = e.target.value;
-    console.log(datosBusqueda)
+    filtrarAuto();
 })
 puertas.addEventListener('change', e => {
     datosBusqueda.puertas = e.target.value;
-    console.log(datosBusqueda)
+    filtrarAuto();
 })
 transmision.addEventListener('change', e => {
-    datosBusqueda.transmision= e.target.value;
-    console.log(datosBusqueda)
+    datosBusqueda.transmision = e.target.value;
+    filtrarAuto();
 })
 color.addEventListener('change', e => {
     datosBusqueda.color = e.target.value;
-    console.log(datosBusqueda)
+    filtrarAuto();
 })
 
 // Funciones 
@@ -79,10 +79,24 @@ function mostrarAutos() {
 
 // Genera los años del select
 function llenarSelect() {
-    for(let i = max; i >= min; i--) {
+    for (let i = max; i >= min; i--) {
         const opcion = document.createElement('option');
         opcion.value = i;
         opcion.textContent = i;
         year.appendChild(opcion); // Agrega las opciones de año al select
     }
+}
+
+// Funcion que filtra en la base de busqueda
+function filtrarAuto(e) {
+    const resultado = autos.filter(filtrarMarca)
+    console.log(resultado)
+}
+
+function filtrarMarca(auto) {
+    const {marca} = datosBusqueda;
+    if(marca) {
+        return auto.marca === marca;
+    }
+    return auto;
 }
